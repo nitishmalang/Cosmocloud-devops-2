@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-redis
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis  # Fixed container name (valid RFC 1123 name)
+        image: redis:alpine  # Correct image name with tag
+        ports:
+        - containerPort: {{ .Values.redis.service.port }}

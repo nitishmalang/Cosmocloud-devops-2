@@ -1,0 +1,17 @@
+backend:
+  image:
+    repository: nitishmalang/backend-app
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 8000
+  env:
+    REDIS_URI: redis://redis:6379
+
+redis:
+  image:
+    repository: redis
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 6379
